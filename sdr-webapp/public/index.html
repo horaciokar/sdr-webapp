@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Visor de Vuelos SDR</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>Visor de Vuelos SDR</h1>
+    </header>
+    
+    <main>
+        <section class="controls">
+            <fieldset>
+                <legend>Consultar Historial</legend>
+                <div class="form-group">
+                    <label for="history-date">Fecha:</label>
+                    <input type="date" id="history-date">
+                </div>
+                <div class="form-group">
+                    <label for="history-callsign">Vuelo (Opcional):</label>
+                    <input type="text" id="history-callsign" placeholder="Ej: IBE312">
+                </div>
+                <button id="search-history-btn">Buscar en Historial</button>
+            </fieldset>
+
+            <fieldset>
+                <legend>Gestionar Datos</legend>
+                <div class="form-group">
+                    <label for="start-date">Desde:</label>
+                    <input type="date" id="start-date">
+                </div>
+                <div class="form-group">
+                    <label for="end-date">Hasta:</label>
+                    <input type="date" id="end-date">
+                </div>
+                <button id="delete-history-btn">Borrar Registros</button>
+            </fieldset>
+        </section>
+
+        <section id="history-section">
+            <h2>Resultados del Historial</h2>
+            <div id="history-container">
+                <p>Utilice el formulario para buscar en el historial de vuelos.</p>
+            </div>
+        </section>
+        
+        <hr>
+
+        <section id="live-section">
+            <div class="live-header">
+                <h2>Vuelos en Vivo</h2>
+                <p id="update-time">Actualizando...</p>
+            </div>
+            <div id="flights-container">
+                <p>Cargando datos en vivo...</p>
+            </div>
+        </section>
+    </main>
+    
+    <script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,5 @@
+# Ignorar dependencias de Node.js
+node_modules/
+
+# Ignorar la base de datos de SQLite
+sdr-webapp/flights.db
