@@ -1,29 +1,39 @@
 <!doctype html>
-<html>
+<html lang="es">
 <head>
   <meta charset="utf-8" />
-  <title>ADSB - Local</title>
+  <title>ADSB Radar</title>
   <link rel="stylesheet" href="/static/style.css">
 </head>
 <body>
-  <h1>ADSB - Datos locales</h1>
 
-  <div>
-    <label>Fecha (YYYY-MM-DD): <input id="date" type="date"></label>
-    <label>Flight / Callsign: <input id="callsign" type="text"></label>
-    <button id="search">Buscar</button>
-    <button id="refresh">Últimos</button>
-    <button id="deleteSelected">Eliminar seleccionados</button>
+  <div id="map">
+    <!-- Los aviones se dibujarán aquí con JavaScript -->
   </div>
 
-  <table id="tbl" border="1" style="width:100%; margin-top:10px;">
-    <thead>
-      <tr>
-        <th></th><th>ID</th><th>Ts</th><th>Callsign</th><th>ICAO</th><th>Lat</th><th>Lon</th><th>Alt</th><th>Track</th>
-      </tr>
-    </thead>
-    <tbody></tbody>
-  </table>
+  <div class="sidebar">
+    <h1>ADSB RADAR</h1>
+    
+    <div class="controls">
+      <label>Callsign: <input id="callsign" type="text" placeholder="p. ej. AAL123"></label>
+      <button id="refresh">ACTUALIZAR</button>
+    </div>
+
+    <div class="table-container">
+      <table id="flights-table">
+        <thead>
+          <tr>
+            <th>Callsign</th>
+            <th>Altitud (ft)</th>
+            <th>Velocidad (kt)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <!-- Filas de vuelos se insertarán aquí -->
+        </tbody>
+      </table>
+    </div>
+  </div>
 
   <script src="/static/app.js"></script>
 </body>

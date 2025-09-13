@@ -1,3 +1,127 @@
-body { font-family: sans-serif; margin: 12px; }
-table { border-collapse: collapse; }
-th, td { padding: 6px; text-align: left; }
+:root {
+  --primary-color: #00ff41; /* Verde neón para el texto y los elementos importantes */
+  --background-color: #0d1a26; /* Azul muy oscuro, casi negro */
+  --grid-color: rgba(0, 255, 65, 0.1); /* Rejilla del radar muy tenue */
+  --sidebar-bg: #0a141f; /* Fondo del panel lateral, ligeramente más claro */
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'monospace', 'Lucida Console', 'Courier New', monospace;
+  background-color: var(--background-color);
+  color: var(--primary-color);
+  display: flex;
+  overflow: hidden; /* Evitar barras de scroll en el body */
+}
+
+#map {
+  width: 75%;
+  height: 100vh;
+  position: relative;
+  background-color: #000;
+  background-image: 
+    linear-gradient(var(--grid-color) 1px, transparent 1px),
+    linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
+  background-size: 50px 50px;
+  border-right: 2px solid var(--primary-color);
+}
+
+.sidebar {
+  width: 25%;
+  height: 100vh;
+  background-color: var(--sidebar-bg);
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+}
+
+h1 {
+  text-align: center;
+  font-size: 1.5em;
+  margin-bottom: 20px;
+  text-shadow: 0 0 5px var(--primary-color);
+}
+
+.controls {
+  margin-bottom: 20px;
+}
+
+.controls label {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.controls input {
+  width: 100%;
+  background-color: #000;
+  border: 1px solid var(--primary-color);
+  color: var(--primary-color);
+  padding: 8px;
+  font-family: inherit;
+}
+
+.controls button {
+  width: 100%;
+  padding: 10px;
+  background-color: var(--primary-color);
+  color: #000;
+  border: none;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.controls button:hover {
+  background-color: #000;
+  color: var(--primary-color);
+  border: 1px solid var(--primary-color);
+}
+
+.table-container {
+  flex-grow: 1;
+  overflow-y: auto; /* Scroll si la tabla es muy grande */
+}
+
+#flights-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+#flights-table th, #flights-table td {
+  border: 1px solid var(--grid-color);
+  padding: 8px;
+  text-align: left;
+  font-size: 0.9em;
+}
+
+#flights-table th {
+  background-color: rgba(0, 255, 65, 0.1);
+}
+
+/* Estilo para los aviones */
+.aircraft {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  background-color: var(--primary-color);
+  border-radius: 50%;
+  box-shadow: 0 0 8px var(--primary-color);
+  transition: top 1s linear, left 1s linear; /* Movimiento suave */
+}
+
+.aircraft-label {
+  position: absolute;
+  bottom: 15px; /* Posición del texto relativa al punto */
+  left: -15px;
+  width: max-content;
+  color: var(--primary-color);
+  font-size: 12px;
+  text-shadow: 1px 1px 2px #000;
+}

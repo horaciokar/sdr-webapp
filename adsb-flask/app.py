@@ -13,7 +13,7 @@ POLL_INTERVAL = int(os.getenv("POLL_INTERVAL", "30"))  # segundos
 
 # Inicializar DB
 def init_db():
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=10)
     cur = conn.cursor()
     cur.execute('''
     CREATE TABLE IF NOT EXISTS flights (
@@ -41,7 +41,7 @@ def poller():
             aircraft = data.get("aircraft", [])
             now = datetime.datetime.utcnow().isoformat(sep=' ')
             if aircraft:
-                conn = sqlite3.connect(DB_PATH)
+                conn = sqlite3.connect(DB_PATH, timeout=10)
                 cur = conn.cursor()
                 for ac in aircraft:
                     lat = ac.get("lat")
@@ -75,7 +75,7 @@ def poller():
 
 # Helper para consultas
 def query_db(sql, params=()):
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=10)
     conn.row_factory = sqlite3.Row
     cur = conn.cursor()
     cur.execute(sql, params)
@@ -115,7 +115,7 @@ def api_delete():
     if not ids:
         return jsonify({"deleted": 0})
     placeholders = ",".join("?" for _ in ids)
-    conn = sqlite3.connect(DB_PATH)
+    conn = sqlite3.connect(DB_PATH, timeout=10)
     cur = conn.cursor()
     cur.execute(f"DELETE FROM flights WHERE id IN ({placeholders})", tuple(ids))
     deleted = cur.rowcount
