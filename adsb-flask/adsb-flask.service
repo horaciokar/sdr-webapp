@@ -1,13 +1,22 @@
 [Unit]
 Description=ADSB Flask Web Application
-After=network.target
+Wants=network-online.target
+After=network-online.target
 
 [Service]
 User=hkarzon
 Group=hkarzon
 WorkingDirectory=/home/hkarzon/projects/sdr/adsb-flask
 ExecStart=/home/hkarzon/projects/sdr/adsb-flask/.venv/bin/python3 app.py
+
+# Reinicio automático y robustez
 Restart=always
+RestartSec=5
+
+# Mejoras de seguridad
+ProtectSystem=full
+PrivateTmp=true
+NoNewPrivileges=true
 
 [Install]
 WantedBy=multi-user.target
