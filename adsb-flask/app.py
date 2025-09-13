@@ -7,7 +7,7 @@ import datetime
 from flask import Flask, request, jsonify, render_template
 
 # Config (puedes cambiar con variables de entorno)
-DB_PATH = os.getenv("DB_PATH", "./flights.db")
+DB_PATH = os.getenv("DB_PATH", "flights.db")
 DUMP1090_URL = os.getenv("DUMP1090_URL", "http://127.0.0.1:8080/data.json")
 POLL_INTERVAL = int(os.getenv("POLL_INTERVAL", "30"))  # segundos
 
