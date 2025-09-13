@@ -6,8 +6,8 @@ After=network-online.target
 [Service]
 User=hkarzon
 Group=hkarzon
-WorkingDirectory=/home/hkarzon/projects/sdr/adsb-flask
-ExecStart=/home/hkarzon/projects/sdr/adsb-flask/.venv/bin/python3 app.py
+WorkingDirectory=/home/hkarzon/sdr-webapp/adsb-flask
+ExecStart=/home/hkarzon/sdr-webapp/adsb-flask/.venv/bin/python3 app.py
 
 # Reinicio automático y robustez
 Restart=always
