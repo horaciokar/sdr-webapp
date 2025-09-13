@@ -1,0 +1,13 @@
+[Unit]
+Description=ADSB Flask Web Application
+After=network.target
+
+[Service]
+User=hkarzon
+Group=hkarzon
+WorkingDirectory=/home/hkarzon/projects/sdr/adsb-flask
+ExecStart=/home/hkarzon/projects/sdr/adsb-flask/.venv/bin/python3 app.py
+Restart=always
+
+[Install]
+WantedBy=multi-user.target
