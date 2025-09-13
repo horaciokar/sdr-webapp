@@ -7,31 +7,40 @@
 </head>
 <body>
 
-  <div id="map">
-    <!-- Los aviones se dibujarán aquí con JavaScript -->
-  </div>
-
-  <div class="sidebar">
-    <h1>ADSB RADAR</h1>
-    
-    <div class="controls">
-      <label>Callsign: <input id="callsign" type="text" placeholder="p. ej. AAL123"></label>
-      <button id="refresh">ACTUALIZAR</button>
+  <div class="main-container">
+    <div id="map">
+      <!-- Los aviones se dibujarán aquí con JavaScript -->
     </div>
 
-    <div class="table-container">
-      <table id="flights-table">
-        <thead>
-          <tr>
-            <th>Callsign</th>
-            <th>Altitud (ft)</th>
-            <th>Velocidad (kt)</th>
-          </tr>
-        </thead>
-        <tbody>
-          <!-- Filas de vuelos se insertarán aquí -->
-        </tbody>
-      </table>
+    <div id="resizer"></div>
+
+    <div class="sidebar">
+      <h1>ADSB RADAR</h1>
+      
+      <div class="controls">
+        <label>Fecha (YYYY-MM-DD): <input id="date" type="date"></label>
+        <label>Callsign: <input id="callsign" type="text" placeholder="p. ej. AAL123"></label>
+        <button id="search-button">BUSCAR / ACTUALIZAR</button>
+      </div>
+
+      <div class="table-container">
+        <table id="flights-table">
+          <thead>
+            <tr>
+              <th>Callsign</th>
+              <th>ICAO24</th>
+              <th>Squawk</th>
+              <th>Altitud (ft)</th>
+              <th>Velocidad (kt)</th>
+              <th>Rumbo</th>
+              <th>Timestamp</th>
+            </tr>
+          </thead>
+          <tbody>
+            <!-- Filas de vuelos se insertarán aquí -->
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
 

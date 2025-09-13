@@ -3,6 +3,7 @@
   --background-color: #0d1a26; /* Azul muy oscuro, casi negro */
   --grid-color: rgba(0, 255, 65, 0.1); /* Rejilla del radar muy tenue */
   --sidebar-bg: #0a141f; /* Fondo del panel lateral, ligeramente más claro */
+  --resizer-color: #00ff41;
 }
 
 * {
@@ -15,29 +16,49 @@ body {
   font-family: 'monospace', 'Lucida Console', 'Courier New', monospace;
   background-color: var(--background-color);
   color: var(--primary-color);
+  overflow: hidden;
+}
+
+.main-container {
   display: flex;
-  overflow: hidden; /* Evitar barras de scroll en el body */
+  width: 100vw;
+  height: 100vh;
 }
 
 #map {
-  width: 75%;
-  height: 100vh;
+  flex: 1;
   position: relative;
   background-color: #000;
   background-image: 
     linear-gradient(var(--grid-color) 1px, transparent 1px),
     linear-gradient(90deg, var(--grid-color) 1px, transparent 1px);
   background-size: 50px 50px;
-  border-right: 2px solid var(--primary-color);
+  min-width: 300px; /* Ancho mínimo del mapa */
+}
+
+#resizer {
+  flex-basis: 5px;
+  background-color: var(--sidebar-bg);
+  border-left: 1px solid var(--resizer-color);
+  border-right: 1px solid var(--resizer-color);
+  cursor: col-resize;
+  transition: background-color 0.3s;
+}
+
+#resizer:hover {
+  background-color: var(--resizer-color);
 }
 
 .sidebar {
-  width: 25%;
+  flex-basis: 450px; /* Ancho inicial del sidebar */
+  min-width: 350px; /* Ancho mínimo */
+  max-width: 800px; /* Ancho máximo */
   height: 100vh;
   background-color: var(--sidebar-bg);
   padding: 20px;
   display: flex;
   flex-direction: column;
+  overflow-y: auto;
 }
 
 h1 {
@@ -86,12 +107,13 @@ h1 {
 
 .table-container {
   flex-grow: 1;
-  overflow-y: auto; /* Scroll si la tabla es muy grande */
+  overflow: auto; /* Scroll en ambas direcciones si la tabla es muy ancha */
 }
 
 #flights-table {
   width: 100%;
   border-collapse: collapse;
+  white-space: nowrap; /* Evitar que el texto de la tabla se rompa */
 }
 
 #flights-table th, #flights-table td {
@@ -103,6 +125,8 @@ h1 {
 
 #flights-table th {
   background-color: rgba(0, 255, 65, 0.1);
+  position: sticky;
+  top: 0; /* Encabezados fijos al hacer scroll vertical */
 }
 
 /* Estilo para los aviones */
@@ -114,14 +138,20 @@ h1 {
   border-radius: 50%;
   box-shadow: 0 0 8px var(--primary-color);
   transition: top 1s linear, left 1s linear; /* Movimiento suave */
+  z-index: 10;
 }
 
 .aircraft-label {
   position: absolute;
   bottom: 15px; /* Posición del texto relativa al punto */
-  left: -15px;
+  left: -25px;
   width: max-content;
+  padding: 2px 4px;
+  background-color: rgba(0,0,0,0.6);
+  border-radius: 2px;
   color: var(--primary-color);
   font-size: 12px;
   text-shadow: 1px 1px 2px #000;
+  white-space: pre; /* Para que los saltos de línea (\n) funcionen */
+  z-index: 11;
 }
